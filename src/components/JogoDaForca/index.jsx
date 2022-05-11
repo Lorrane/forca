@@ -1,40 +1,114 @@
-import './styles.css';
-import React, { useState } from 'react';
-import useForca from '../useForca';
-import usePalavra from '../usePalavra';
-import Teclado from '../Teclado';
+import "./styles.css";
+import React, { useEffect, useState } from "react";
+import Forca from "../Forca";
+import Palavra from "../Palavra";
+import Popup from "../Popup";
 
 export default function JogoDaForca() {
+    const palavras = [
+        "LORRANE",
+        "ITAQUAQUECETUBA",
+        "PINDAMONHANGABA",
+        "MERCEDES",
+        "INCONSTITUCIONALISSISSIMAMENTE",
+        "LEVIANO",
+    ];
+    const [jogavel, setJogavel] = useState(true);
+    const [letrasCorretas, setLetrasCorretas] = useState([]);
+    const [letra, setLetra] = useState();
+    const [palavraEscolhida, setPalavraEscolhida] = useState(
+        palavras[Math.floor(Math.random() * palavras.length)]
+    );
 
-    const [chances, setChances] =useState(0);
-    const letras = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S','T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-    const [forca, setForca] = useForca(chances);
-    const [palpite, setPalpite, setPalavra] = usePalavra("");
+    const [forca, setForca] = useState(-1);
+    const letras = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+    ];
 
-    // const handleTeste = () => {
-    //     setForca(6);
-    // }
-    // const handleTeste1 = () => {
-    //     setForca(-1);
-    // }
+    useEffect(() => {
+        // se jogavel for true
+        if (jogavel) {
+            // se o palpite existe na palavra
+            if (palavraEscolhida.includes(letra)) {
+                // se o palpite não existe na lista de letras corretas
+                if (!letrasCorretas.includes(letra)) {
+                    // inclui o palpite nas letras corretas
+                    setLetrasCorretas((prev) => [...prev, letra]);
+                }
+                // se o palpite não existe na palavra e se a forca está no limite
+            } else if (forca === 6) {
+                // setJogavel(false);
+                setForca(-1);
+                // se o palpite não existe na palavra e a forca não está no limite
+            } else {
+                setForca(forca + 1);
+            }
+        }
+    }, [letra, jogavel]);
 
-    const handleButton = (letra) =>{
-        letra.target.disabled = true;
-        // console.log(letra);
-        setPalpite(letra.target.innerText)
+    function jogarNovamente() {
+        setJogavel(true);
+
+        // Empty Arrays
+        setLetrasCorretas([]);
+
+        const random = Math.floor(Math.random() * palavras.length);
+        setPalavraEscolhida(palavras[random]);
     }
 
     return (
-        <main className='principal'>
-            <img src={forca} alt="algo" />
-            {palpite}
-            {/* <button onClick={handleTeste}>Teste</button>
-            <button onClick={handleTeste1}>Teste1</button> */}
-            <div className='letras'>
-            {letras.map((letra)=>(
-                <button  onClick={handleButton} key={letra}>{letra}</button>
-            ))}
+        <main className="principal">
+            <Forca caminho={forca} />
+            <Palavra
+                palavraEscolhida={palavraEscolhida}
+                letrasCorretas={letrasCorretas}
+            />
+            <div className="letras">
+                {letras.map((i) => (
+                    <button
+                        onClick={(props) => {
+                            props.target.disabled = true;
+                            setLetra(i);
+                        }}
+                        key={i}
+                    >
+                        {i}
+                    </button>
+                ))}
             </div>
+            <Popup
+                letrasCorretas={letrasCorretas}
+                palavraEscolhida={palavraEscolhida}
+                forca={forca}
+                setForca={setForca}
+                setJogavel={setJogavel}
+                jogarNovamente={jogarNovamente}
+            />
         </main>
-    )
+    );
 }
