@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/forca/static/css/main.82ec10d3.css",
+    "main.js": "/forca/static/js/main.73868b43.js",
+    "index.html": "/forca/index.html",
+    "main.82ec10d3.css.map": "/forca/static/css/main.82ec10d3.css.map",
+    "main.73868b43.js.map": "/forca/static/js/main.73868b43.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.82ec10d3.css",
+    "static/js/main.73868b43.js"
+  ]
+}
