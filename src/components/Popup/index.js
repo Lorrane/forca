@@ -20,10 +20,10 @@ function Popup({ letrasCorretas, palavraEscolhida, forca, setForca, setJogavel, 
             default:
                 break;
         }
-        mensagemFinal = 'Parabéns! Você venceu! 😃';
+        mensagemFinal = 'Parabéns! Você o salvou da forca! 😃';
         jogavel = false;
     } else if (VerificarVitoria(letrasCorretas, palavraEscolhida, forca) === 'derrota') {
-        mensagemFinal = 'Infelizmente você perdeu. 😕';
+        mensagemFinal = 'Infelizmente o destino dele foi a forca. 😕';
         revelarSegredo = `... a palavra era: ${palavraEscolhida}`;
         jogavel = false;
     }

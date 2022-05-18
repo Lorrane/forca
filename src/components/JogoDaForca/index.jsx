@@ -12,6 +12,16 @@ export default function JogoDaForca() {
         "MERCEDES",
         "INCONSTITUCIONALISSISSIMAMENTE",
         "LEVIANO",
+        "INDULGENTE",
+        "TOLERANTE",
+        "COMPUTADOR",
+        "JUSTIFICATIVA",
+        "CONTRASSENSO",
+        "DISPARATE",
+        "INCONGRUENCIA",
+        "DESATINO",
+        "ABSURDO",
+        "PROPOSTA",
     ];
     const [jogavel, setJogavel] = useState(true);
     const [letrasCorretas, setLetrasCorretas] = useState([]);
@@ -21,6 +31,7 @@ export default function JogoDaForca() {
     );
 
     const [forca, setForca] = useState(0);
+    const [botao, setBotao] = useState([]);
     const letras = [
         "A",
         "B",
@@ -71,16 +82,27 @@ export default function JogoDaForca() {
         }
     }, [letra, jogavel]);
 
+    function handleClickButtonLetra(props) {
+        props.target.disabled = true;
+        setBotao((tudo) => [...tudo, props]);
+    }
+
     function jogarNovamente() {
-        window.location.reload();
+        botao.map((i) => {
+            i.target.disabled = false;
+        });
 
-        // setJogavel(true);
+        setJogavel(true);
 
-        // // Empty Arrays
-        // setLetrasCorretas([]);
+        // Empty Arrays
+        setLetrasCorretas([]);
 
-        // const random = Math.floor(Math.random() * palavras.length);
-        // setPalavraEscolhida(palavras[random]);
+        const random = Math.floor(Math.random() * palavras.length);
+        setPalavraEscolhida(palavras[random]);
+
+        setForca(undefined);
+        setLetra();
+        setBotao([]);
     }
 
     return (
@@ -94,7 +116,7 @@ export default function JogoDaForca() {
                 {letras.map((i) => (
                     <button
                         onClick={(props) => {
-                            props.target.disabled = true;
+                            handleClickButtonLetra(props);
                             setLetra(i);
                         }}
                         key={i}
