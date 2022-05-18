@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/forca/static/css/main.82ec10d3.css",
-    "main.js": "/forca/static/js/main.73868b43.js",
+    "main.css": "/forca/static/css/main.37aef676.css",
+    "main.js": "/forca/static/js/main.9285f33f.js",
     "index.html": "/forca/index.html",
-    "main.82ec10d3.css.map": "/forca/static/css/main.82ec10d3.css.map",
-    "main.73868b43.js.map": "/forca/static/js/main.73868b43.js.map"
+    "main.37aef676.css.map": "/forca/static/css/main.37aef676.css.map",
+    "main.9285f33f.js.map": "/forca/static/js/main.9285f33f.js.map"
   },
   "entrypoints": [
-    "static/css/main.82ec10d3.css",
-    "static/js/main.73868b43.js"
+    "static/css/main.37aef676.css",
+    "static/js/main.9285f33f.js"
   ]
 }
