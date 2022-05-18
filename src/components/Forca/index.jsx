@@ -1,6 +1,6 @@
 import React from "react";
+import "./styles.css";
 
-import { useState } from "react";
 import derrota from "./../../assets/images/derrota.png";
 import forca from "./../../assets/images/forca0.png";
 import forca1 from "./../../assets/images/forca1.png";
