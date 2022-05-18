@@ -20,7 +20,7 @@ export default function JogoDaForca() {
         palavras[Math.floor(Math.random() * palavras.length)]
     );
 
-    const [forca, setForca] = useState(-1);
+    const [forca, setForca] = useState(0);
     const letras = [
         "A",
         "B",
@@ -65,20 +65,22 @@ export default function JogoDaForca() {
                 // setJogavel(false);
                 setForca(-1);
                 // se o palpite não existe na palavra e a forca não está no limite
-            } else {
+            } else if (letra !== undefined) {
                 setForca(forca + 1);
             }
         }
     }, [letra, jogavel]);
 
     function jogarNovamente() {
-        setJogavel(true);
+        window.location.reload();
 
-        // Empty Arrays
-        setLetrasCorretas([]);
+        // setJogavel(true);
 
-        const random = Math.floor(Math.random() * palavras.length);
-        setPalavraEscolhida(palavras[random]);
+        // // Empty Arrays
+        // setLetrasCorretas([]);
+
+        // const random = Math.floor(Math.random() * palavras.length);
+        // setPalavraEscolhida(palavras[random]);
     }
 
     return (
